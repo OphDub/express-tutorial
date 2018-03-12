@@ -22,6 +22,10 @@ app.get('/json', (request, response) => {
   response.status(200).json({"name": "Robbie"});
 });
 
+app.get('/sunsets', (request, response) => {
+  response.status(201).send();
+});
+
 app.listen(3000, () => {
   console.log('Express Intro running on localhost:3000');
 });
