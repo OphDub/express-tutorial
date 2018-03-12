@@ -27,7 +27,7 @@ app.get('/json', (request, response) => {
 
 app.get('/sunsets', (request, response) => {
   // response.status(201).sendFile(express.static('sunsets'));
-  response.sendFile(__dirname + '/public/sunsets.html');
+  response.status(201).sendFile(__dirname + '/public/sunsets.html');
 });
 
 app.listen(3000, () => {
