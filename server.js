@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const someData = require('./data/data.json');
+
 const urlLogger = (request, response, next) => {
   console.log('Request URL:', request.url);
   next();
@@ -11,6 +13,7 @@ const timeLogger = (request, response, next) => {
 
 app.use(urlLogger, timeLogger);
 app.use(express.static('public'));
+app.use(express.static('sunsets'));
 
 app.get('/', (request, response) => {
   // We don't need to explicitly use this handler or send a response
@@ -19,11 +22,12 @@ app.get('/', (request, response) => {
 });
 
 app.get('/json', (request, response) => {
-  response.status(200).json({"name": "Robbie"});
+  response.status(200).json(someData);
 });
 
 app.get('/sunsets', (request, response) => {
-  response.status(201).send();
+  // response.status(201).sendFile(express.static('sunsets'));
+  response.sendFile(__dirname + '/public/sunsets.html');
 });
 
 app.listen(3000, () => {
